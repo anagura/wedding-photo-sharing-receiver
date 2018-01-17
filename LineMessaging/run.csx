@@ -33,6 +33,7 @@ public static class LineRequest
         if (string.IsNullOrEmpty(ChannelSecret))
         {
             Console.WriteLine("Please set ChannelSecret in App Settings");
+            return null;
         }
 
         var secret = Encoding.UTF8.GetBytes(ChannelSecret);
