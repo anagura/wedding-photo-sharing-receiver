@@ -30,6 +30,11 @@ public static class LineRequest
             return null;
         }
 
+        if (string.IsNullOrEmpty(ChannelSecret))
+        {
+            Console.WriteLine("Please set ChannelSecret in App Settings");
+        }
+
         var secret = Encoding.UTF8.GetBytes(ChannelSecret);
         var content = await req.Content.ReadAsStringAsync();
         var body = Encoding.UTF8.GetBytes(content);
