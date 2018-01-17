@@ -23,7 +23,7 @@ public static async Task<string> Run(HttpRequestMessage req, TraceWriter log)
 
     if (string.IsNullOrEmpty(LineSettings.ChannelSecret))
     {
-        log.Warning("Please set ChannelSecret in App Settings");
+        log.Error("Please set ChannelSecret in App Settings");
         return null;
     }
 
