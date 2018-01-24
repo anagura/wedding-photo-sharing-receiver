@@ -20,7 +20,7 @@
     <None Update="LineMessaging/run.csx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="LineMessaging\project.json">
+    <None Update="LineMessagingWebhook\project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
