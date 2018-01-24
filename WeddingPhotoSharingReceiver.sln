@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wedding-photo-sharing-receiver", "wedding-photo-sharing-receiver.csproj", "{A555E115-18BC-407E-986B-14F06A23DFD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wedding-photo-sharing-receiver", "wedding-photo-sharing-receiver.csproj", "{3715A621-A991-4D43-8E55-FE8EC3FA88A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A555E115-18BC-407E-986B-14F06A23DFD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A555E115-18BC-407E-986B-14F06A23DFD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A555E115-18BC-407E-986B-14F06A23DFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A555E115-18BC-407E-986B-14F06A23DFD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3715A621-A991-4D43-8E55-FE8EC3FA88A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3715A621-A991-4D43-8E55-FE8EC3FA88A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3715A621-A991-4D43-8E55-FE8EC3FA88A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3715A621-A991-4D43-8E55-FE8EC3FA88A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {22A62F0B-EB8B-4C19-85E8-288BEBA659D2}
+		SolutionGuid = {7BDCD104-4B05-4519-97AE-D16D62E0953F}
 	EndGlobalSection
 EndGlobal

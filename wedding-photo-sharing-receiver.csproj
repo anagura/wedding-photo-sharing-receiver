@@ -14,13 +14,13 @@
     <None Update="host.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="RelayToSlack/function.json">
+    <None Update="LineMessagingWebhook/function.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="RelayToSlack/run.csx">
+    <None Update="LineMessagingWebhook/run.csx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="RelayToSlack/project.json">
+    <None Update="LineMessagingWebhook\project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
