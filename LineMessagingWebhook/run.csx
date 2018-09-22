@@ -26,7 +26,7 @@ static readonly string LineMessageTableName = Environment.GetEnvironmentVariable
 static readonly string VisionSubscriptionKey = Environment.GetEnvironmentVariable("VisionSubscriptionKey", EnvironmentVariableTarget.Process);
 static readonly string VisionUrl = "https://japaneast.api.cognitive.microsoft.com/vision/v2.0/analyze";
 
-
+const int MessageLength = 40;
 
 static LineMessagingClient lineMessagingClient;
 
@@ -81,6 +81,13 @@ public static async Task<string> Run(HttpRequestMessage req, TraceWriter log)
 			string suffix = "";
 			if (eventMessage.Message.Type == MessageType.Text)
 			{
+				string textMessage = eventMessage.Message.Text;
+				if (textMessage.Length > MessageLength)
+				{
+					textMessage = textMessage.Substring(0, MessageLength) + "...";
+					suffix = string.Format("\nメッセージが長いため、途中までしか表示されません。{0}文字以内で入力をお願いします。", MessageLength);
+				}
+
 				// ストレージテーブルに格納
 				await UploadMessageToStorageTable(eventMessage.Message.Id, Name, eventMessage.Message.Text);
 			}
