@@ -5,5 +5,9 @@
         "LineMessaging": "1.2.0"
       }
     }
+  },
+  "dependencies": {
+    "WindowsAzure.Storage": "9.3.2",
+    "Newtonsoft.Json": "11.0.2"
   }
 }
