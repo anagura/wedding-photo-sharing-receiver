@@ -84,9 +84,9 @@ public static async Task<string> Run(HttpRequestMessage req, TraceWriter log)
 
 			LineResult result = new LineResult()
 			{
+				Id = eventMessage.Message.Id,
 				Name = Name,
 				MessageType = (int)eventMessage.Message.Type,
-				IsValid = true
 			};
 			if (eventMessage.Message.Type == MessageType.Text)
 			{
@@ -277,8 +277,8 @@ private static string GetUrl(string fileName, bool isAdult = false)
 
 public class LineResult
 {
-	[JsonProperty("isValid")]
-	public bool IsValid { get; set; }
+	[JsonProperty("id")]
+	public long Id { get; set; }
 
 	[JsonProperty("name")]
 	public string Name { get; set; }
