@@ -67,6 +67,8 @@ public static async Task<string> Run(HttpRequestMessage req, TraceWriter log)
 
 	var message = await webhookRequest.GetContentJson();
 	log.Info(message);
+	List<LineResult> lineResults = new List<LineResult>();
+
 	LineWebhookContent content = await webhookRequest.GetContent();
 	foreach (LineWebhookContent.Event eventMessage in content.Events)
 	{
@@ -79,6 +81,13 @@ public static async Task<string> Run(HttpRequestMessage req, TraceWriter log)
 			var ext = eventMessage.Message.Type == MessageType.Video ? ".mpg" : ".jpg";
 			var fileName = eventMessage.Message.Id.ToString() + ext;
 			string suffix = "";
+
+			LineResult result = new LineResult()
+			{
+				Name = Name,
+				MessageType = (int)eventMessage.Message.Type,
+				IsValid = true
+			};
 			if (eventMessage.Message.Type == MessageType.Text)
 			{
 				string textMessage = eventMessage.Message.Text;
@@ -90,6 +99,8 @@ public static async Task<string> Run(HttpRequestMessage req, TraceWriter log)
 
 				// ストレージテーブルに格納
 				await UploadMessageToStorageTable(eventMessage.Message.Id, Name, eventMessage.Message.Text);
+
+				result.Message = textMessage;
 			}
 			else if (eventMessage.Message.Type == MessageType.Image)
 			{
@@ -116,6 +127,8 @@ public static async Task<string> Run(HttpRequestMessage req, TraceWriter log)
 
 				// 画像をストレージにアップロード
 				await UploadImageToStorage(fileName, lineResult.Result);
+
+				result.ImageUrl = GetUrl(fileName);
 			}
 			else
 			{
@@ -125,10 +138,12 @@ public static async Task<string> Run(HttpRequestMessage req, TraceWriter log)
 			}
 
 			await ReplyToLine(eventMessage.ReplyToken, "投稿を受け付けました。表示されるまで少々お待ちください。" + suffix, log);
+
+			lineResults.Add(result);
 		}
 	}
 
-	return message;
+	return lineResults.Any() ? JsonConvert.SerializeObject(lineResults) : string.Empty;
 }
 
 private static async Task<string> MakeAnalysisRequest(byte[] byteData, TraceWriter log)
@@ -258,4 +273,22 @@ public class VisionAdultResultDetail
 private static string GetUrl(string fileName, bool isAdult = false)
 {
 	return string.Format("https://{0}.blob.core.windows.net/{1}/{2}", StorageAccountName, isAdult ? LineAdultMediaContainerName : LineMediaContainerName, fileName);
+}
+
+public class LineResult
+{
+	[JsonProperty("isValid")]
+	public bool IsValid { get; set; }
+
+	[JsonProperty("name")]
+	public string Name { get; set; }
+
+	[JsonProperty("messageType")]
+	public int MessageType { get; set; }
+
+	[JsonProperty("message")]
+	public string Message { get; set; }
+
+	[JsonProperty("imageUrl")]
+	public string ImageUrl { get; set; }
 }
